@@ -6,9 +6,9 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState(``);
   const [enteredDate, setEnteredDate] = useState(``);
 
-// Тут мы навесли useState везде, чтобы менять состояние значений компонентов. 
-// Везде в значениях value мы навесили соотвтетствующий стэйт, чтобы сделать круговорот, менять состояние, обнулять его и т.д.
-// Короч тут получилсоь, что мы реализовали двухсторонне связывание
+  // Тут мы навесли useState везде, чтобы менять состояние значений компонентов.
+  // Везде в значениях value мы навесили соотвтетствующий стэйт, чтобы сделать круговорот, менять состояние, обнулять его и т.д.
+  // Короч тут получилсоь, что мы реализовали двухсторонне связывание
 
   const titleChangeHandler = (e) => {
     setEnteredTitle(e.target.value);
@@ -31,13 +31,13 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
-
     setEnteredTitle(``);
     setEnteredAmount(``);
     setEnteredDate(``);
 
-    props.onSaveExpenseData(expenseData)
+    props.onCancel()
+
+    props.onSaveExpenseData(expenseData);
   };
 
   return (
@@ -73,6 +73,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.onCancel} >Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
